@@ -34,8 +34,8 @@ public class Player {
         this.location = location;
     }
 
-    public boolean foundAnObject(ObjectR objectR) {
-        if (todolist.containsKey(objectR)) {
+    public boolean pickObject(ObjectR objectR) {
+        if (location.contains(objectR) && todolist.containsKey(objectR)) {
             todolist.replace(objectR, true);
             return true;
         } else
@@ -43,6 +43,17 @@ public class Player {
     }
 
     public boolean hasFoundEverything() {
-        return todolist.containsValue(false);
+        return !todolist.containsValue(false);
+    }
+
+    public Room moveTo(Direction direction) {
+        if (location.getSide(direction).canGoThrough())
+            setLocation(location.getRoom(direction));
+        return location;
+    }
+
+    public void dropObject(ObjectR objectR) {
+        if (todolist.containsKey(objectR))
+            todolist.replace(objectR, false);
     }
 }

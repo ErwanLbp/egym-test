@@ -9,4 +9,8 @@ package model;
  */
 public class Wall implements InBetween {
 
+    @Override
+    public boolean canGoThrough() {
+        return false;
+    }
 }

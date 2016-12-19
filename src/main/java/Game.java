@@ -1,11 +1,13 @@
 import factory.MazeFactory;
 import log.Log;
+import command.Command;
 import model.Maze;
 import model.Player;
 import org.w3c.dom.Document;
 import parse.InOut;
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 /**
  * <h1>PACKAGE_NAME Game</h1>
@@ -17,6 +19,7 @@ import java.util.ArrayList;
 public class Game {
 
     private Player player;
+    private Stack<Command> historic;
 
     public static void main(String[] args) {
         Log.info("***** BEGIN *****");

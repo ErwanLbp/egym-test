@@ -81,6 +81,16 @@ public class Room implements Iterable {
         this.sides.put(direction, inBetween);
     }
 
+    public InBetween getSide(Direction direction) {
+        return this.sides.get(direction);
+    }
+
+    public Room getRoom(Direction direction) {
+        if (getSide(direction).canGoThrough())
+            return ((Door) getSide(direction)).getOtherSide(this);
+        return null;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -104,5 +114,9 @@ public class Room implements Iterable {
     @Override
     public String toString() {
         return "[" + id + "] " + name;
+    }
+
+    public boolean contains(ObjectR objectR) {
+        return objects.contains(objectR);
     }
 }

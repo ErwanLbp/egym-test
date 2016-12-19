@@ -9,5 +9,5 @@ package model;
  */
 public interface InBetween {
 
-
+    boolean canGoThrough();
 }

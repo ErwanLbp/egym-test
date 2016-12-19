@@ -32,4 +32,15 @@ public class Door implements InBetween {
     public void setR2(Room r2) {
         this.r2 = r2;
     }
+
+    public Room getOtherSide(Room room) {
+        if (room != r1 && room != r2)
+            return null;
+        return (room == r1) ? r2 : r1;
+    }
+
+    @Override
+    public boolean canGoThrough() {
+        return true;
+    }
 }
