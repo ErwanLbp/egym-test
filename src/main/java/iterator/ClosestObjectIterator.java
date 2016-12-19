@@ -15,7 +15,7 @@ import java.util.List;
  * @version 1.0
  * @since 19-12-2016
  */
-public class Foo implements Iterator {
+public class ClosestObjectIterator implements Iterator {
 
     private Room room;
     private List<Room> toGo;
@@ -23,7 +23,7 @@ public class Foo implements Iterator {
     private ArrayList<Direction> directionsToGo;
     private Iterator iteratorOnDirections;
 
-    public Foo(Room room) {
+    public ClosestObjectIterator(Room room) {
         this.room = room;
         toGo = new ArrayList<>();
         visited = new ArrayList<>();
@@ -50,53 +50,47 @@ public class Foo implements Iterator {
 
         ArrayList<Direction> listMinSize = null;
 
-        //TODO Construire la liste de directions petit à petit, sans cloner la précédente
-
         //Enter NORTH
-        ArrayList<Direction> lNorth = (ArrayList<Direction>) dirs.clone();
+        ArrayList<Direction> lNorth = new ArrayList<>();
         lNorth.add(Direction.NORTH);
         if (findPathToOneRecursive(lNorth, currentRoom.getRoom(Direction.NORTH)))
             listMinSize = lNorth;
 
         //Enter EAST
-        ArrayList<Direction> lEast = (ArrayList<Direction>) dirs.clone();
+        ArrayList<Direction> lEast = new ArrayList<>();
         lEast.add(Direction.EAST);
         if (findPathToOneRecursive(lEast, currentRoom.getRoom(Direction.EAST))) {
-            if (listMinSize == null)
-                listMinSize = lEast;
-            if (lEast.size() < listMinSize.size())
+            if (listMinSize == null || lEast.size() < listMinSize.size())
                 listMinSize = lEast;
         }
 
         //Enter WEST
-        ArrayList<Direction> lWest = (ArrayList<Direction>) dirs.clone();
+        ArrayList<Direction> lWest = new ArrayList<>();
         lWest.add(Direction.WEST);
         if (findPathToOneRecursive(lWest, currentRoom.getRoom(Direction.WEST))) {
-            if (listMinSize == null)
-                listMinSize = lWest;
-            if (lWest.size() < listMinSize.size())
+            if (listMinSize == null || lWest.size() < listMinSize.size())
                 listMinSize = lWest;
         }
 
         //Enter SOUTH
-        ArrayList<Direction> lSouth = (ArrayList<Direction>) dirs.clone();
+        ArrayList<Direction> lSouth = new ArrayList<>();
         lSouth.add(Direction.SOUTH);
         if (findPathToOneRecursive(lSouth, currentRoom.getRoom(Direction.SOUTH))) {
-            if (listMinSize == null)
-                listMinSize = lSouth;
-            if (lSouth.size() < listMinSize.size())
+            if (listMinSize == null || lSouth.size() < listMinSize.size())
                 listMinSize = lSouth;
         }
 
-        if (listMinSize != null)
-            dirs.addAll(listMinSize);
+        if (listMinSize == null)
+            return false;
+
+        dirs.addAll(listMinSize);
         return true;
     }
 
     private void actualize() {
-        System.out.println("Actualization");
         directionsToGo = new ArrayList<>();
         toGo.remove(room);
+        visited = new ArrayList<>();
 
         findPathToOneRecursive(directionsToGo, room);
         iteratorOnDirections = directionsToGo.iterator();
@@ -111,8 +105,6 @@ public class Foo implements Iterator {
     public Object next() {
         if (directionsToGo == null)
             actualize();
-
-        System.out.println("lDirs : " + directionsToGo);
 
         Direction nextDirection = (Direction) iteratorOnDirections.next();
 

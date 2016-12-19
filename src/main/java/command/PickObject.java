@@ -3,6 +3,8 @@ package command;
 import model.ObjectR;
 import model.Player;
 import model.Room;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 /**
  * <h1>command PickObject</h1>
@@ -35,7 +37,20 @@ public class PickObject implements Command {
     }
 
     @Override
+    public void append(Document document) {
+        Element roomElement = document.createElement("room");
+        roomElement.setAttribute("id", room.getId() + "");
+        roomElement.setAttribute("name", room.getName());
+        roomElement.setIdAttribute("id", true);
+        document.getDocumentElement().appendChild(roomElement);
+
+        Element objectElement = document.createElement("object");
+        objectElement.setAttribute("name", objectR.getName());
+        roomElement.appendChild(objectElement);
+    }
+
+    @Override
     public String toString() {
-        return "Pick object " + objectR;
+        return "In the room " + room + ", pick object " + objectR;
     }
 }

@@ -64,10 +64,14 @@ public class Player {
         }
     }
 
-    public void seekForObjects() {
+    public List<ObjectR> seekForObjects() {
         List<ObjectR> objectsInRoom = location.getObjects();
+        List<ObjectR> result = new ArrayList<>();
+        List<ObjectR> objectsStillToFind = getObjectsStillToFind();
         for (ObjectR obj : objectsInRoom)
-            pickObject(obj);
+            if (objectsStillToFind.contains(obj))
+                result.add(obj);
+        return result;
     }
 
     public List<ObjectR> getObjectsStillToFind() {

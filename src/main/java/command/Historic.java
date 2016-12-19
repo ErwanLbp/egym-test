@@ -1,7 +1,12 @@
 package command;
 
 import log.Log;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import java.util.Stack;
 
 /**
@@ -36,5 +41,25 @@ public class Historic {
 
     public void executeLast() {
         historic.peek().execute();
+    }
+
+    public Document convertToDOM() {
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder;
+        try {
+            builder = factory.newDocumentBuilder();
+        } catch (ParserConfigurationException e) {
+            Log.error("Unable to create a DocumentBuilder to convert the route into a DOM object");
+            return null;
+        }
+        Document document = builder.newDocument();
+        Element route = document.createElement("route");
+        document.appendChild(route);
+
+        for (Command command : historic) {
+            command.append(document);
+        }
+
+        return document;
     }
 }

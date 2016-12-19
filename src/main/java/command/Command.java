@@ -1,5 +1,8 @@
 package command;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 /**
  * <h1>model Command</h1>
  *
@@ -12,4 +15,6 @@ public interface Command {
     void execute();
 
     void undo();
+
+    void append(Document document);
 }

@@ -76,7 +76,7 @@ public class InOut {
             Log.error("Unable to save the " + filename + " file");
             return false;
         }
-        Log.success("The path has been saved successfully in " + filename);
+        Log.success("The route has been saved successfully in " + filename);
         return true;
     }
 

@@ -1,7 +1,6 @@
 <map>
    <room id="1" name="Stairway" east="2"/>
    <room id="2" name="Hallway 1" north="4" south="7" west="1" east="3">
-       <object name="Scarf"/>
        <object name="Umbrella"/>
    </room>
    <room id="3" name="Hallway 2" east="5" south="6" west="2">
@@ -17,5 +16,6 @@
    <room id="7" name="Living Room" north="2" east="8"/>
    <room id="8" name="Bed Room" west="7" north="5">
        <object name="Pillow"/>
+       <object name="Scarf"/>
    </room>
 </map>

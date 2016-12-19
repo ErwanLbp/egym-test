@@ -1,15 +1,18 @@
 import command.Enter;
 import command.Historic;
+import command.PickObject;
 import factory.MazeFactory;
-import iterator.Foo;
+import iterator.ClosestObjectIterator;
 import log.Log;
 import model.Maze;
+import model.ObjectR;
 import model.Player;
 import org.w3c.dom.Document;
 import parse.InOut;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * <h1>PACKAGE_NAME Game</h1>
@@ -22,6 +25,7 @@ public class Game {
 
     private Player player;
     private Historic historic;
+    private String outputFilename;
 
     public static void main(String[] args) {
         Log.info("***** BEGIN *****");
@@ -33,9 +37,13 @@ public class Game {
         if (!game.run())
             System.exit(1);
 
+        if (!game.save())
+            System.exit(1);
+
         Log.info("***** END *****");
         System.exit(0);
     }
+
 
     public Game() {
         this.historic = new Historic();
@@ -45,16 +53,21 @@ public class Game {
     private boolean run() {
         Log.info("===== GAME START =====");
         Iterator roomIterator = player.getLocation().iterator();
-        if (roomIterator instanceof Foo)
-            ((Foo) roomIterator).setObjectsToFind(player.getObjectsStillToFind());
+        if (roomIterator instanceof ClosestObjectIterator)
+            ((ClosestObjectIterator) roomIterator).setObjectsToFind(player.getObjectsStillToFind());
 
         while (!player.hasFoundEverything()) {
             Enter enter = (Enter) roomIterator.next();
             enter.setPlayer(player);
             historic.storeCommand(enter);
-
             historic.executeLast();
-            player.seekForObjects();
+
+            List<ObjectR> objectsPlayerNeedInTheRoom = player.seekForObjects();
+            for (ObjectR object : objectsPlayerNeedInTheRoom) {
+                PickObject pickObject = new PickObject(player, player.getLocation(), object);
+                historic.storeCommand(pickObject);
+                historic.executeLast();
+            }
         }
         Log.success("Player found every objects");
         Log.info("===== GAME END =====");
@@ -86,10 +99,10 @@ public class Game {
             idInitialRoom = 1;
         }
 
-        String outputXml = args[2];
-        if (outputXml == null) {
+        outputFilename = args[2];
+        if (outputFilename == null) {
             Log.error("Output filename argument not found, will be : output.xml");
-            outputXml = "output.xml";
+            outputFilename = "output.xml";
         }
 
         Maze.getInstance().load(mapDOM);
@@ -97,5 +110,11 @@ public class Game {
         player = MazeFactory.getInstance().createPlayer(Maze.getInstance().getRoom(idInitialRoom), configContent.subList(1, configContent.size()));
 
         return true;
+    }
+
+
+    private boolean save() {
+        Document docDOM = historic.convertToDOM();
+        return InOut.saveOutputXML(docDOM, outputFilename);
     }
 }

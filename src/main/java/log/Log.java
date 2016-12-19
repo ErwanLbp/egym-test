@@ -53,12 +53,12 @@ public class Log {
     public static void info(String msg, boolean lineStart, boolean lineEnd) {
         String msg_format;
         if (lineStart && lineEnd)
-            msg_format = msg + ".\n";
+            msg_format = msg + "\n";
         else {
             if (lineStart)
                 msg_format = msg + " ";
             else if (lineEnd)
-                msg_format = msg + ".\n";
+                msg_format = msg + "\n";
             else
                 msg_format = msg + " ";
         }

@@ -1,9 +1,7 @@
 package model;
 
 import factory.MazeFactory;
-import iterator.Foo;
-import iterator.LRHandIterator;
-import iterator.RoomIterator;
+import iterator.ClosestObjectIterator;
 import log.Log;
 
 import java.util.*;
@@ -110,7 +108,7 @@ public class Room implements Iterable {
 
     @Override
     public Iterator iterator() {
-        return new Foo(this);
+        return new ClosestObjectIterator(this);
     }
 
     @Override

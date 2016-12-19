@@ -3,6 +3,8 @@ package command;
 import model.Direction;
 import model.Player;
 import model.Room;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 /**
  * <h1>command Enter</h1>
@@ -36,6 +38,15 @@ public class Enter implements Command {
     @Override
     public void undo() {
         player.moveTo(direction.opposite());
+    }
+
+    @Override
+    public void append(Document document) {
+        Element roomElement = document.createElement("room");
+        roomElement.setAttribute("id", room.getId() + "");
+        roomElement.setAttribute("name", room.getName());
+        roomElement.setIdAttribute("id", true);
+        document.getDocumentElement().appendChild(roomElement);
     }
 
     public boolean isPossible() {
