@@ -23,4 +23,13 @@ public enum Direction {
         }
         throw new IllegalStateException("Unknown Direction");
     }
+
+    public static Direction toDirection(String direction) {
+        if (direction.equals("north")) return NORTH;
+        if (direction.equals("south")) return SOUTH;
+        if (direction.equals("east")) return EAST;
+        if (direction.equals("west")) return WEST;
+        System.out.println("Unknow Direction : " + direction);
+        return null;
+    }
 }
