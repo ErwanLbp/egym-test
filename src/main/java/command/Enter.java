@@ -23,6 +23,10 @@ public class Enter implements Command {
         this.direction = direction;
     }
 
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
     @Override
     public void execute() {
         if (isPossible())
@@ -40,6 +44,6 @@ public class Enter implements Command {
 
     @Override
     public String toString() {
-        return "Enter in the room " + room;
+        return "In the room " + room + ", go " + direction;
     }
 }

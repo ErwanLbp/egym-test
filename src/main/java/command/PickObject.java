@@ -33,4 +33,9 @@ public class PickObject implements Command {
     public void undo() {
         player.dropObject(objectR);
     }
+
+    @Override
+    public String toString() {
+        return "Pick object " + objectR;
+    }
 }
