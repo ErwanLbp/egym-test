@@ -1,5 +1,6 @@
 package model;
 
+import factory.MazeFactory;
 import log.Log;
 import org.w3c.dom.*;
 
@@ -67,9 +68,9 @@ public class Maze {
             }
 
             //Creating a room and adding it to the rooms list, for now it has no door to other rooms
-            Room room = new Room(id, name);
+            Room room = MazeFactory.getInstance().createRoom(id, name);
             Log.success(room + ",", true);
-            this.rooms.add(room);
+            this.addRoom(room);
 
 
             // This map will contains the sides(name) of the current room, then we will add it to ths sidesOfRooms map
@@ -99,7 +100,7 @@ public class Maze {
                 Node nodeObject = objects.item(j);
                 // Adding the current object to the room objects
                 try {
-                    room.addObject(new ObjectR(nodeObject.getAttributes().getNamedItem("name").getNodeValue()));
+                    room.addObject(MazeFactory.getInstance().createObject(nodeObject.getAttributes().getNamedItem("name").getNodeValue()));
                 } catch (Exception e) {
                     Log.error("Error during converting an object of the room " + room + " of the DOM maze into a Room object in the Maze");
                     return false;
@@ -113,7 +114,7 @@ public class Maze {
             for (Map.Entry<String, Integer> directionEntry : roomEntry.getValue().entrySet()) {
                 Room r1 = this.getRoom(roomEntry.getKey());
                 Room r2 = this.getRoom(directionEntry.getValue());
-                Door d = new Door(r1, r2);
+                Door d = MazeFactory.getInstance().createDoor(r1, r2);
                 Direction direction = Direction.toDirection(directionEntry.getKey());
                 if (direction == null) {
                     Log.error("Error during converting the DOM Door to Door objects");

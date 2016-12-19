@@ -41,4 +41,8 @@ public class Player {
         } else
             return false;
     }
+
+    public boolean hasFoundEverything() {
+        return todolist.containsValue(false);
+    }
 }

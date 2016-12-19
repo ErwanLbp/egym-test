@@ -1,9 +1,8 @@
 package factory;
 
-import model.Door;
-import model.Maze;
-import model.Room;
-import model.Wall;
+import model.*;
+
+import java.util.List;
 
 /**
  * <h1>factory MazeFactory</h1>
@@ -41,4 +40,11 @@ public class MazeFactory {
         return new Door(r1, r2);
     }
 
+    public ObjectR createObject(String name) {
+        return new ObjectR(name);
+    }
+
+    public Player createPlayer(Room roomStart, List<String> objectsToFind) {
+        return new Player(roomStart, objectsToFind);
+    }
 }
