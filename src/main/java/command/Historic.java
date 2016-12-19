@@ -56,11 +56,11 @@ public class Historic {
         Element route = document.createElement("route");
         document.appendChild(route);
 
-        int lastRoom = -1;
+        boolean lastCommandIsAPick = false;
         for (Command command : historic) {
-            if (lastRoom != command.getRoom().getId())
+            if (!(lastCommandIsAPick && command instanceof Enter))
                 command.append(document);
-            lastRoom = command.getRoom().getId();
+            lastCommandIsAPick = command instanceof PickObject;
         }
 
         return document;

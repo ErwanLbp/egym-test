@@ -58,9 +58,11 @@ public class Game {
 
         while (!player.hasFoundEverything()) {
             Enter enter = (Enter) roomIterator.next();
-            enter.setPlayer(player);
-            historic.storeCommand(enter);
-            historic.executeLast();
+            if (enter != null) {
+                enter.setPlayer(player);
+                historic.storeCommand(enter);
+                historic.executeLast();
+            }
 
             List<ObjectR> objectsPlayerNeedInTheRoom = player.seekForObjects();
             for (ObjectR object : objectsPlayerNeedInTheRoom) {

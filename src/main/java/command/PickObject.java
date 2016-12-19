@@ -38,11 +38,14 @@ public class PickObject implements Command {
 
     @Override
     public void append(Document document) {
-        Element roomElement = document.createElement("room");
-        roomElement.setAttribute("id", room.getId() + "");
-        roomElement.setAttribute("name", room.getName());
-        roomElement.setIdAttribute("id", true);
-        document.getDocumentElement().appendChild(roomElement);
+        Element roomElement = document.getElementById(room.getId() + "");
+        if (roomElement == null) {
+            roomElement = document.createElement("room");
+            roomElement.setAttribute("id", room.getId() + "");
+            roomElement.setAttribute("name", room.getName());
+            roomElement.setIdAttribute("id", true);
+            document.getDocumentElement().appendChild(roomElement);
+        }
 
         Element objectElement = document.createElement("object");
         objectElement.setAttribute("name", objectR.getName());

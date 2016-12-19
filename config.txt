@@ -2,3 +2,6 @@
 Umbrella
 Scarf
 Knife
+Money
+Soap
+Pillow

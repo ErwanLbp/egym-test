@@ -106,12 +106,19 @@ public class ClosestObjectIterator implements Iterator {
         if (directionsToGo == null)
             actualize();
 
-        Direction nextDirection = (Direction) iteratorOnDirections.next();
+        Direction nextDirection = null;
+        Enter enter = null;
 
-        Enter enter = new Enter(null, room, nextDirection);
-        Log.info(enter + "");
+        if (!directionsToGo.isEmpty())
+            nextDirection = (Direction) iteratorOnDirections.next();
 
-        room = ((Door) room.getSide(nextDirection)).getOtherSide(room);
+        if (nextDirection != null) {
+            enter = new Enter(null, room, nextDirection);
+            Log.info(enter + "");
+
+            room = ((Door) room.getSide(nextDirection)).getOtherSide(room);
+        }
+
         if (toGo.contains(room))
             actualize();
         return enter;
