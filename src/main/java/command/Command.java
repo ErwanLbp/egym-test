@@ -1,5 +1,6 @@
 package command;
 
+import model.Room;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -17,4 +18,6 @@ public interface Command {
     void undo();
 
     void append(Document document);
+
+    Room getRoom();
 }

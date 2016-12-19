@@ -56,8 +56,11 @@ public class Historic {
         Element route = document.createElement("route");
         document.appendChild(route);
 
+        int lastRoom = -1;
         for (Command command : historic) {
-            command.append(document);
+            if (lastRoom != command.getRoom().getId())
+                command.append(document);
+            lastRoom = command.getRoom().getId();
         }
 
         return document;

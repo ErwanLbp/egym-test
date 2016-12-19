@@ -49,6 +49,11 @@ public class Enter implements Command {
         document.getDocumentElement().appendChild(roomElement);
     }
 
+    @Override
+    public Room getRoom() {
+        return room;
+    }
+
     public boolean isPossible() {
         return room.getSide(direction).canGoThrough();
     }

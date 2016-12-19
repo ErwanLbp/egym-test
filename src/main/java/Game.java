@@ -112,7 +112,6 @@ public class Game {
         return true;
     }
 
-
     private boolean save() {
         Document docDOM = historic.convertToDOM();
         return InOut.saveOutputXML(docDOM, outputFilename);

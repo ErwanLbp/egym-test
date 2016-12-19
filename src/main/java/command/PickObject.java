@@ -50,6 +50,11 @@ public class PickObject implements Command {
     }
 
     @Override
+    public Room getRoom() {
+        return room;
+    }
+
+    @Override
     public String toString() {
         return "In the room " + room + ", pick object " + objectR;
     }
