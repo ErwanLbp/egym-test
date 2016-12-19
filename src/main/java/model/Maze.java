@@ -22,6 +22,7 @@ public class Maze {
 
     private Maze() {
         this.rooms = new ArrayList<>();
+        this.objects = new HashMap<>();
     }
 
     public static Maze getInstance() {
@@ -31,6 +32,7 @@ public class Maze {
     }
 
     private List<Room> rooms;
+    private Map<ObjectR, Room> objects;
 
     public boolean addRoom(Room room) {
         this.rooms.add(room);
@@ -41,6 +43,10 @@ public class Maze {
         for (Room room : rooms)
             if (room.getId() == idRoom) return room;
         return null;
+    }
+
+    public Room inWhichRoomIs(ObjectR objectR) {
+        return objects.get(objectR);
     }
 
     public boolean load(Document doc) {
@@ -94,13 +100,15 @@ public class Maze {
 
 
             // Getting the objects the current room contains
-            NodeList objects = ((Element) nodeRoom).getElementsByTagName("object");
-            Log.info(objects.getLength() + " objects found", false, true);
-            for (int j = 0; j < objects.getLength(); j++) {
-                Node nodeObject = objects.item(j);
+            NodeList objectsNL = ((Element) nodeRoom).getElementsByTagName("object");
+            Log.info(objectsNL.getLength() + " objects found", false, true);
+            for (int j = 0; j < objectsNL.getLength(); j++) {
+                Node nodeObject = objectsNL.item(j);
                 // Adding the current object to the room objects
                 try {
-                    room.addObject(MazeFactory.getInstance().createObject(nodeObject.getAttributes().getNamedItem("name").getNodeValue()));
+                    ObjectR objectR = MazeFactory.getInstance().createObject(nodeObject.getAttributes().getNamedItem("name").getNodeValue());
+                    room.addObject(objectR);
+                    objects.put(objectR, room);
                 } catch (Exception e) {
                     Log.error("Error during converting an object of the room " + room + " of the DOM maze into a Room object in the Maze");
                     return false;

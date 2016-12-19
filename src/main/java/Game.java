@@ -1,13 +1,15 @@
+import command.Enter;
+import command.Historic;
 import factory.MazeFactory;
+import iterator.Foo;
 import log.Log;
-import command.Command;
 import model.Maze;
 import model.Player;
 import org.w3c.dom.Document;
 import parse.InOut;
 
 import java.util.ArrayList;
-import java.util.Stack;
+import java.util.Iterator;
 
 /**
  * <h1>PACKAGE_NAME Game</h1>
@@ -19,7 +21,7 @@ import java.util.Stack;
 public class Game {
 
     private Player player;
-    private Stack<Command> historic;
+    private Historic historic;
 
     public static void main(String[] args) {
         Log.info("***** BEGIN *****");
@@ -35,13 +37,27 @@ public class Game {
         System.exit(0);
     }
 
+    public Game() {
+        this.historic = new Historic();
+    }
+
+
     private boolean run() {
+        Log.info("===== GAME START =====");
+        Iterator roomIterator = player.getLocation().iterator();
+        if (roomIterator instanceof Foo)
+            ((Foo) roomIterator).setObjectsToFind(player.getObjectsStillToFind());
 
-        while(!player.hasFoundEverything()){
+        while (!player.hasFoundEverything()) {
+            Enter enter = (Enter) roomIterator.next();
+            enter.setPlayer(player);
+            historic.storeCommand(enter);
 
-
+            historic.executeLast();
+            player.seekForObjects();
         }
-
+        Log.success("Player found every objects");
+        Log.info("===== GAME END =====");
         return true;
     }
 

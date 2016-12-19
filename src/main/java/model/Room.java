@@ -1,6 +1,8 @@
 package model;
 
 import factory.MazeFactory;
+import iterator.Foo;
+import iterator.LRHandIterator;
 import iterator.RoomIterator;
 import log.Log;
 
@@ -108,7 +110,7 @@ public class Room implements Iterable {
 
     @Override
     public Iterator iterator() {
-        return new RoomIterator(this);
+        return new Foo(this);
     }
 
     @Override

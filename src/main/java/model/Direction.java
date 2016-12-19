@@ -34,4 +34,22 @@ public enum Direction {
         Log.error("Unknow Direction : " + direction);
         return null;
     }
+
+    public Direction atLeft() {
+        switch (this) {
+            case EAST:
+                return NORTH;
+            case NORTH:
+                return WEST;
+            case SOUTH:
+                return EAST;
+            case WEST:
+                return SOUTH;
+        }
+        throw new IllegalStateException("Unknown Direction");
+    }
+
+    public Direction atRight() {
+        return atLeft().opposite();
+    }
 }

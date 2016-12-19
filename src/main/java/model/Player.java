@@ -1,7 +1,9 @@
 package model;
 
+import factory.MazeFactory;
 import log.Log;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,7 +24,7 @@ public class Player {
         this.location = location;
         this.todolist = new HashMap<>();
         for (String object : objectsToFind)
-            this.todolist.put(new ObjectR(object), false);
+            this.todolist.put(MazeFactory.getInstance().createObject(object), false);
         Log.info("Player start in room " + this.location + " and has to find : " + objectsToFind);
     }
 
@@ -35,8 +37,9 @@ public class Player {
     }
 
     public boolean pickObject(ObjectR objectR) {
-        if (location.contains(objectR) && todolist.containsKey(objectR)) {
+        if (todolist.containsKey(objectR)) {
             todolist.replace(objectR, true);
+            Log.info("Player picked the object " + objectR);
             return true;
         } else
             return false;
@@ -47,13 +50,32 @@ public class Player {
     }
 
     public Room moveTo(Direction direction) {
-        if (location.getSide(direction).canGoThrough())
+        if (location.getSide(direction).canGoThrough()) {
             setLocation(location.getRoom(direction));
+            Log.info("Player moved to the room " + location);
+        }
         return location;
     }
 
     public void dropObject(ObjectR objectR) {
-        if (todolist.containsKey(objectR))
+        if (todolist.containsKey(objectR)) {
             todolist.replace(objectR, false);
+            Log.info("Player dropped the object " + objectR);
+        }
+    }
+
+    public void seekForObjects() {
+        List<ObjectR> objectsInRoom = location.getObjects();
+        for (ObjectR obj : objectsInRoom)
+            pickObject(obj);
+    }
+
+    public List<ObjectR> getObjectsStillToFind() {
+        List<ObjectR> objectsToFind = new ArrayList<>();
+        for (Map.Entry<ObjectR, Boolean> objectEntry : todolist.entrySet()) {
+            if (!objectEntry.getValue())
+                objectsToFind.add(objectEntry.getKey());
+        }
+        return objectsToFind;
     }
 }
