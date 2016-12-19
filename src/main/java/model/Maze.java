@@ -1,10 +1,7 @@
 package model;
 
 import log.Log;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import org.w3c.dom.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -49,23 +46,20 @@ public class Maze {
         // This map will contains the attributes "north", "south", etc. of each room(id)
         Map<Integer, Map<String, Integer>> sidesOfRooms = new HashMap<>();
 
-        // Getting the root element of the XMl document
-        Element map = doc.getDocumentElement();
-
         // Getting the list of rooms in the maze
-        NodeList rooms = map.getChildNodes();
+        NodeList rooms = doc.getElementsByTagName("room");
+
         Log.info(rooms.getLength() + " rooms found in the DOM object");
         for (int i = 0; i < rooms.getLength(); i++) {
             Node nodeRoom = rooms.item(i);
             int id;
             String name;
             // Parsing the attributes "id" and "name" of the room
+            NamedNodeMap attributes = nodeRoom.getAttributes();
             try {
-                Node n = nodeRoom.getAttributes().getNamedItem("id");
-                if (n == null) System.out.println("est null");
-                else System.out.println(n.getNodeValue());
-                id = Integer.parseInt(nodeRoom.getAttributes().getNamedItem("id").getNodeValue());
-                name = nodeRoom.getAttributes().getNamedItem("name").getNodeValue();
+                Node n = attributes.getNamedItem("id");
+                id = Integer.parseInt(attributes.getNamedItem("id").getNodeValue());
+                name = attributes.getNamedItem("name").getNodeValue();
             } catch (Exception e) {
                 Log.error("Error during converting the " + i + "th room of the DOM maze into a Room object in the Maze");
                 e.printStackTrace();
@@ -74,6 +68,7 @@ public class Maze {
 
             //Creating a room and adding it to the rooms list, for now it has no door to other rooms
             Room room = new Room(id, name);
+            Log.success(room + ",", true);
             this.rooms.add(room);
 
 
@@ -98,8 +93,8 @@ public class Maze {
 
 
             // Getting the objects the current room contains
-            NodeList objects = nodeRoom.getChildNodes();
-            Log.info(objects.getLength() + " objects found in the room " + room + " of the DOM object");
+            NodeList objects = ((Element) nodeRoom).getElementsByTagName("object");
+            Log.info(objects.getLength() + " objects found", false, true);
             for (int j = 0; j < objects.getLength(); j++) {
                 Node nodeObject = objects.item(j);
                 // Adding the current object to the room objects
