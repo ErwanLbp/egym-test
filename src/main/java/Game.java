@@ -1,3 +1,4 @@
+import model.Maze;
 import org.w3c.dom.Document;
 import parse.InOut;
 
@@ -12,9 +13,9 @@ import java.util.ArrayList;
  */
 public class Game {
     public static void main(String[] args) {
-
         System.out.println("***** BEGIN *****");
 
+        // If we don't receive the map.xml and the config.txt file we can't start the game
         if (args.length < 2) {
             System.out.println("Not enough program arguments received");
             System.exit(1);
@@ -41,7 +42,7 @@ public class Game {
             outputXml = "output.xml";
         }
 
-
+        Maze.getInstance().load(mapDOM);
 
         System.out.println("***** END *****");
     }

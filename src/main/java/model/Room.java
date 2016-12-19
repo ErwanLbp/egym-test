@@ -76,6 +76,10 @@ public class Room implements Iterable {
         this.sides.put(Direction.WEST, MazeFactory.getInstance().createWall());
     }
 
+    public void setSide(Direction direction, InBetween inBetween) {
+        this.sides.put(direction, inBetween);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
