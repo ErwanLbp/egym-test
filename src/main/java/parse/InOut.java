@@ -1,5 +1,6 @@
 package parse;
 
+import log.Log;
 import org.w3c.dom.Document;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -44,10 +45,10 @@ public class InOut {
             File fdom = new File(filename);
             doc = parser.parse(fdom);
         } catch (Exception e) {
-            System.out.println("Unable to load the " + filename + " file");
+            Log.error("Unable to load the " + filename + " file");
             return null;
         }
-        System.out.println(filename + " has been loaded successfully");
+        Log.success(filename + " has been loaded successfully");
         return doc;
     }
 
@@ -72,10 +73,10 @@ public class InOut {
             StreamResult newFile = new StreamResult(f);
             transformer.transform(new DOMSource(mazePath), newFile);
         } catch (Exception e) {
-            System.out.println("Unable to save the " + filename + " file");
+            Log.error("Unable to save the " + filename + " file");
             return false;
         }
-        System.out.println("The path has been saved successfully in " + filename);
+        Log.success("The path has been saved successfully in " + filename);
         return true;
     }
 
@@ -92,13 +93,13 @@ public class InOut {
             while ((line = br.readLine()) != null)
                 configContent.add(line);
         } catch (FileNotFoundException e) {
-            System.out.println("Unable to find the " + filename + " file");
+            Log.error("Unable to find the " + filename + " file");
             return null;
         } catch (IOException e) {
-            System.out.println("Error during the reading of the " + filename + " file");
+            Log.error("Error during the reading of the " + filename + " file");
             return null;
         }
-        System.out.println(filename + " has been loaded successfully");
+        Log.success(filename + " has been loaded successfully");
         return configContent;
     }
 }

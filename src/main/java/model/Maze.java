@@ -1,5 +1,6 @@
 package model;
 
+import log.Log;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -53,16 +54,21 @@ public class Maze {
 
         // Getting the list of rooms in the maze
         NodeList rooms = map.getChildNodes();
+        Log.info(rooms.getLength() + " rooms found in the DOM object");
         for (int i = 0; i < rooms.getLength(); i++) {
             Node nodeRoom = rooms.item(i);
             int id;
             String name;
             // Parsing the attributes "id" and "name" of the room
             try {
+                Node n = nodeRoom.getAttributes().getNamedItem("id");
+                if (n == null) System.out.println("est null");
+                else System.out.println(n.getNodeValue());
                 id = Integer.parseInt(nodeRoom.getAttributes().getNamedItem("id").getNodeValue());
                 name = nodeRoom.getAttributes().getNamedItem("name").getNodeValue();
             } catch (Exception e) {
-                System.out.println("Error during converting a room of the DOM maze into a Room object in the Maze");
+                Log.error("Error during converting the " + i + "th room of the DOM maze into a Room object in the Maze");
+                e.printStackTrace();
                 return false;
             }
 
@@ -93,13 +99,14 @@ public class Maze {
 
             // Getting the objects the current room contains
             NodeList objects = nodeRoom.getChildNodes();
+            Log.info(objects.getLength() + " objects found in the room " + room + " of the DOM object");
             for (int j = 0; j < objects.getLength(); j++) {
                 Node nodeObject = objects.item(j);
                 // Adding the current object to the room objects
                 try {
                     room.addObject(new ObjectR(nodeObject.getAttributes().getNamedItem("name").getNodeValue()));
                 } catch (Exception e) {
-                    System.out.println("Error during converting an object of the room " + room + " of the DOM maze into a Room object in the Maze");
+                    Log.error("Error during converting an object of the room " + room + " of the DOM maze into a Room object in the Maze");
                     return false;
                 }
             }
@@ -114,7 +121,7 @@ public class Maze {
                 Door d = new Door(r1, r2);
                 Direction direction = Direction.toDirection(directionEntry.getKey());
                 if (direction == null) {
-                    System.out.println("Error during converting the DOM Door to Door objects");
+                    Log.error("Error during converting the DOM Door to Door objects");
                     return false;
                 }
                 r1.setSide(direction, d);

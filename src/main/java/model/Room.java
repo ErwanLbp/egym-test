@@ -2,6 +2,7 @@ package model;
 
 import factory.MazeFactory;
 import iterator.RoomIterator;
+import log.Log;
 
 import java.util.*;
 
@@ -62,7 +63,7 @@ public class Room implements Iterable {
     public void addObject(ObjectR objectR) {
         for (ObjectR o : objects) {
             if (o == objectR) {
-                System.out.println("The room " + id + " " + name + " already contains the object " + objectR.getName());
+                Log.info("The room " + id + " " + name + " already contains the object " + objectR.getName());
                 return;
             }
         }

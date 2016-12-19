@@ -1,5 +1,7 @@
 package model;
 
+import log.Log;
+
 /**
  * <h1>model Direction</h1>
  *
@@ -29,7 +31,7 @@ public enum Direction {
         if (direction.equals("south")) return SOUTH;
         if (direction.equals("east")) return EAST;
         if (direction.equals("west")) return WEST;
-        System.out.println("Unknow Direction : " + direction);
+        Log.error("Unknow Direction : " + direction);
         return null;
     }
 }

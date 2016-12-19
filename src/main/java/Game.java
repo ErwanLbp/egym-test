@@ -1,3 +1,4 @@
+import log.Log;
 import model.Maze;
 import org.w3c.dom.Document;
 import parse.InOut;
@@ -13,11 +14,11 @@ import java.util.ArrayList;
  */
 public class Game {
     public static void main(String[] args) {
-        System.out.println("***** BEGIN *****");
+        Log.info("***** BEGIN *****");
 
         // If we don't receive the map.xml and the config.txt file we can't start the game
         if (args.length < 2) {
-            System.out.println("Not enough program arguments received");
+            Log.error("Not enough program arguments received");
             System.exit(1);
             return;
         }
@@ -38,12 +39,12 @@ public class Game {
 
         String outputXml = args[2];
         if (outputXml == null) {
-            System.out.println("Output filename argument not found, will be : output.xml");
+            Log.error("Output filename argument not found, will be : output.xml");
             outputXml = "output.xml";
         }
 
         Maze.getInstance().load(mapDOM);
 
-        System.out.println("***** END *****");
+        Log.info("***** END *****");
     }
 }

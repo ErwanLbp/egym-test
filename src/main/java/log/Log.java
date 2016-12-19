@@ -11,7 +11,7 @@ import java.nio.file.StandardOpenOption;
 public class Log {
 
     private static boolean writeInFile = false;
-    private static boolean printOnScreen = false;
+    private static boolean popUp = false;
     private static String filepath = "log.txt";
 
     public static void set_writeInFile(boolean activate) {
@@ -22,12 +22,12 @@ public class Log {
         return Log.writeInFile;
     }
 
-    private static void set_printOnScreen(boolean activate) {
-        Log.printOnScreen = activate;
+    private static void set_popUp(boolean activate) {
+        Log.popUp = activate;
     }
 
-    private static boolean is_set_printOnScreen() {
-        return Log.printOnScreen;
+    private static boolean is_set_popUp() {
+        return Log.popUp;
     }
 
     private static boolean write_in_file(String log) {
@@ -40,7 +40,7 @@ public class Log {
         return true;
     }
 
-    private static boolean print_on_screen(String log) {
+    private static boolean popUp(String log) {
         try {
             JOptionPane.showMessageDialog(null, log);
         } catch (Exception e) {
@@ -64,8 +64,8 @@ public class Log {
         }
         System.out.print(msg_format);
 
-        if (is_set_printOnScreen())
-            print_on_screen(msg_format);
+        if (is_set_popUp())
+            popUp(msg_format);
         if (is_set_writeInFile())
             write_in_file(msg_format);
     }
