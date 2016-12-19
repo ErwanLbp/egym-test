@@ -9,7 +9,7 @@
     <packaging>jar</packaging>
 
     <properties>
-        <nom-archive-war>egym-test-erwan-le-batard-poles</nom-archive-war>
+        <archive-name>egym-test-erwan-le-batard-poles</archive-name>
         <java-version>1.8</java-version>
     </properties>
 
@@ -22,28 +22,16 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
-            <version>20160810</version>
-        </dependency>
-
-        <dependency>
             <groupId>javax.xml.parsers</groupId>
             <artifactId>jaxp-api</artifactId>
             <version>1.4.5</version>
         </dependency>
-
-        <dependency>
-            <groupId>org.freemarker</groupId>
-            <artifactId>freemarker</artifactId>
-            <version>2.3.25-incubating</version>
-        </dependency>
     </dependencies>
 
     <build>
-        <finalName>${nom-archive-war}</finalName>
+        <finalName>${archive-name}</finalName>
 
-        <!--Pour ajouter les sources dans le war-->
+        <!--To add sources in the archive-->
         <resources>
             <resource>
                 <directory>${basedir}/src/main/java</directory>
@@ -51,7 +39,7 @@
         </resources>
 
         <plugins>
-            <!--Compiler avec java 1.8-->
+            <!--To compile with java 8-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -62,7 +50,7 @@
                 </configuration>
             </plugin>
 
-            <!--Ajouter un jar avec la javadoc-->
+            <!--To add an archive with the javadoc-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
