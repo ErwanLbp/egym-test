@@ -120,7 +120,7 @@ public class Maze {
 
 
             // This map will contains the sides(String of the Direction) of the current room, then we will add it to ths sidesOfRooms map
-            Map<String, Integer> sidesOfCurrentRoom = new HashMap<>(); // TODO It can be optimized cause we will had the door twice, once for each room of the door
+            Map<String, Integer> sidesOfCurrentRoom = new HashMap<>(); // FIXME It can be optimized cause we will had the door twice, once for each room of the door
 
             // Getting the attributes of each direction and adding it to the map if it's not null
             Node north = nodeRoom.getAttributes().getNamedItem("north");

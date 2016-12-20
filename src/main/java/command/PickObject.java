@@ -68,6 +68,7 @@ public class PickObject implements Command {
 
         Element objectElement = document.createElement("object");
         objectElement.setAttribute("name", objectR.getName());
+        objectElement.setIdAttribute("name", true);
         roomElement.appendChild(objectElement);
     }
 

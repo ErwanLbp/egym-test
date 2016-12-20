@@ -28,7 +28,8 @@ public class Historic {
      * @param command The command to add to the Stack historic
      */
     public void storeCommand(Command command) {
-        historic.push(command);
+        if (command != null)
+            historic.push(command);
     }
 
     /**
