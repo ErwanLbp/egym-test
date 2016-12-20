@@ -1,0 +1,21 @@
+<map>
+ <room id="101" name="Stairway" east="102"/>
+ <room id="102" name="Hallway 1" north="104" south="107" west="101" east="103">
+   <object name="Scarf"/>
+   <object name="Umbrella"/>
+ </room>
+ <room id="103" name="Hallway 2" east="105" south="106" west="102">
+   <object name="Money"/>
+ </room>
+ <room id="104" name="Storage Room" south="102"/>
+ <room id="105" name="Kitchen" west="103" south="108">
+   <object name="Knife"/>
+ </room>
+ <room id="106" name="Bath Room" north="103">
+   <object name="Soap"/>
+ </room>
+ <room id="107" name="Living Room" north="102" east="108"/>
+ <room id="108" name="Bed Room" west="107" north="105">
+   <object name="Pillow"/>
+ </room>
+</map>
