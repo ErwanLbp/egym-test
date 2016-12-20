@@ -50,7 +50,7 @@ public class Enter implements Command {
 
     /**
      * Undo the command<br/>
-     * Move the player to the opposite direction, so it cancel the execute()
+     * Move the player to the opposite direction, so it cancel the {@link #execute() execute()}
      */
     @Override
     public void undo() {
@@ -62,6 +62,7 @@ public class Enter implements Command {
      * Add a room object in the DOM object, with its id and name
      *
      * @param document The DOM object to add the command
+     * @see Historic#convertToDOM()
      */
     @Override
     public void append(Document document) {

@@ -33,27 +33,13 @@ public class Historic {
     }
 
     /**
-     * Execute all the commands in the Stack historic
-     */
-    public void executeAll() {
-        for (Command command : historic)
-            command.execute();
-    }
-
-    /**
      * Pop the last command of the Stack historic and call its undo()
+     * @see Command#undo()
      */
-    public void undoLast() {
+    public void undo() {
         Command command = historic.pop();
         Log.info("Undo " + command);
         command.undo();
-    }
-
-    /**
-     * Execute the last command added to the Stack historic
-     */
-    public void executeLast() {
-        historic.peek().execute();
     }
 
     /**
@@ -63,7 +49,7 @@ public class Historic {
      * @return A DOM Document containing all the commands
      */
     public Document convertToDOM() {
-        // Creation of the Document
+        // Creation of the Document object
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder;
         try {
@@ -81,7 +67,7 @@ public class Historic {
         // Adding each command
         boolean lastCommandIsAPick = false;
         for (Command command : historic) {
-            // To prevent adding the same room after picking an object, it select every command except the Enter right after a PickObject
+            // To prevent adding the same room after picking an object, it select every command except the Enter right after a PickObject FIXME There might be a proper way to do it
             if (!(lastCommandIsAPick && command instanceof Enter))
                 command.append(document);
             lastCommandIsAPick = command instanceof PickObject;

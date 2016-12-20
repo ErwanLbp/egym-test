@@ -60,15 +60,15 @@ public class Game {
             Enter enter = (Enter) roomIterator.next();
             if (enter != null) {
                 enter.setPlayer(player);
+                enter.execute();
                 historic.storeCommand(enter);
-                historic.executeLast();
             }
 
             List<ObjectR> objectsPlayerNeedInTheRoom = player.seekForObjects();
             for (ObjectR object : objectsPlayerNeedInTheRoom) {
                 PickObject pickObject = new PickObject(player, player.getLocation(), object);
+                pickObject.execute();
                 historic.storeCommand(pickObject);
-                historic.executeLast();
             }
         }
         Log.success("Player found every objects");
