@@ -1,4 +1,22 @@
 
+============================
+=== FILES IN THE ARCHIVE ===
+============================
+* This README.md 														: README.md
+* The folder containing the project										: egym-test-erwan-le-batard-poles/
+	+ The sources folder													: src/
+	+ The files needed by the program										: map.xml config.txt
+	+ The test_cases folder (used for the tests of the GameTest class)		: test_cases/
+	+ The log file 															: log.txt
+* The javadoc folder  													: javadoc/
+* The folder with the Tests Coverage Report								: test-coverage-report/
+* The folder with the tests results										: test-results/
+* My git logs															: git_log.txt
+
+
+=================
+=== FEW NOTES ===
+=================
 The program need at least to arguments : 
 	- The filename of the map
 	- The filename of the configuration
@@ -38,14 +56,4 @@ Every line of code is written by me. The Log class is a class a used in some pre
 === CRITICS OF MY CODE ===
 ==========================
 * My tests don't cover 100% of the code. I covered all the model, the factory, the command, and the game, which are the importants pieces of the project (I join the Coverage Report)
-* Sometimes my code is not very "beautiful" cause I wanted to make it work, but then I didn't had time to make it better
-
-
-============================
-=== FILES IN THE ARCHIVE ===
-============================
-* The jar with the sources, the compiled classes and tests classes	: egym-test-erwan-le-batard-poles.jar
-* The folder with the javadoc 										: egym-test-erwan-le-batard-poles-javadoc/
-* The folter with the Tests Coverage Report							: test-coverage-report/
-* The folter with the tests results									: test-results/
-
+* Sometimes my code is not very "beautiful" because I wanted to make it work, but then I didn't had time to make it better
