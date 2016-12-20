@@ -73,14 +73,6 @@ public class Enter implements Command {
     }
 
     /**
-     * @return The room in with the command take place
-     */
-    @Override
-    public Room getRoom() {
-        return room;
-    }
-
-    /**
      * @return True if it's possible to go through the side pointed by the direction
      */
     private boolean isPossible() {

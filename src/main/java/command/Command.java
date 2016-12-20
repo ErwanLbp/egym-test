@@ -29,9 +29,4 @@ public interface Command {
      * @param document The DOM object to add the command
      */
     void append(Document document);
-
-    /**
-     * @return The Room in which the command take place
-     */
-    Room getRoom();
 }

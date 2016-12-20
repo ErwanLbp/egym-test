@@ -73,14 +73,6 @@ public class PickObject implements Command {
     }
 
     /**
-     * @return The room in with the command take place
-     */
-    @Override
-    public Room getRoom() {
-        return room;
-    }
-
-    /**
      * @return A string describing the command
      */
     @Override
