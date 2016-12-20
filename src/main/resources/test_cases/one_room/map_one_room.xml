@@ -1,0 +1,5 @@
+<map>
+	<room id="117" name="Stairway" east="2">
+		<object name="Dust"/>
+	</room>
+</map>

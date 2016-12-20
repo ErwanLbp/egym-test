@@ -100,12 +100,12 @@ public class Maze {
         Map<Integer, Map<String, Integer>> sidesOfRooms = new HashMap<>();
 
         // Getting the list of rooms in the maze
-        NodeList rooms = doc.getElementsByTagName("room");
+        NodeList roomsNL = doc.getElementsByTagName("room");
 
-        Log.info(rooms.getLength() + " rooms found in the DOM object");
-        for (int i = 0; i < rooms.getLength(); i++) {
+        Log.info(roomsNL.getLength() + " rooms found in the DOM object");
+        for (int i = 0; i < roomsNL.getLength(); i++) {
             // For each room of the Document
-            Node nodeRoom = rooms.item(i);
+            Node nodeRoom = roomsNL.item(i);
             int id;
             String name;
             // Parsing the attributes "id" and "name" of the room
@@ -164,23 +164,34 @@ public class Maze {
 
         // So now we have the map sidesOfRooms containing each room and the door with other rooms
 
-        // For each door, we create it and add it to the rooms
-        for (Map.Entry<Integer, Map<String, Integer>> roomEntry : sidesOfRooms.entrySet()) {
-            for (Map.Entry<String, Integer> directionEntry : roomEntry.getValue().entrySet()) {
-                Room r1 = this.getRoom(roomEntry.getKey());
-                Room r2 = this.getRoom(directionEntry.getValue());
-                Door d = MazeFactory.getInstance().createDoor(r1, r2);
-                // Converting the String of the attribute direction of the DOM object
-                Direction direction = Direction.toDirection(directionEntry.getKey());
-                if (direction == null) {
-                    Log.error("Error during converting the DOM Door to Door objects");
-                    return false;
+        // For each door, we create it and add it to the rooms, if there is less than 2 room, no need to do it
+        if (rooms.size() > 1) {
+            for (Map.Entry<Integer, Map<String, Integer>> roomEntry : sidesOfRooms.entrySet()) {
+                for (Map.Entry<String, Integer> directionEntry : roomEntry.getValue().entrySet()) {
+                    Room r1 = this.getRoom(roomEntry.getKey());
+                    Room r2 = this.getRoom(directionEntry.getValue());
+                    Door d = MazeFactory.getInstance().createDoor(r1, r2);
+                    // Converting the String of the attribute direction of the DOM object
+                    Direction direction = Direction.toDirection(directionEntry.getKey());
+                    if (direction == null) {
+                        Log.error("Error during converting the DOM Door to Door objects");
+                        return false;
+                    }
+                    r1.setSide(direction, d);
+                    r2.setSide(direction.opposite(), d);
                 }
-                r1.setSide(direction, d);
-                r2.setSide(direction.opposite(), d);
             }
         }
 
         return true;
+    }
+
+    /**
+     * Set the instance to null, to take a new start<br/>
+     * <i>Used only for testing, not really useful otherwise</i>
+     */
+    public void reset() {
+        Log.info("### RESET ###");
+        instance = null;
     }
 }

@@ -40,7 +40,7 @@ public class Game {
      * <b>Second</b> : A file with on the first line the id of the room the player starts in, then on each line an object to pick in the maze<br/>
      * <b>Third (Optional)</b> : The name of the output file, will be "output.xml" if it can't be found<br/>
      *
-     * @param args
+     * @param args Arguments received by the program
      */
     public static void main(String[] args) {
         Log.info("***** BEGIN *****");
@@ -49,19 +49,18 @@ public class Game {
 
         // If a problem occurs during configuration, the program can't continue
         if (!game.configuration(args))
-            System.exit(1);
+            return;
 
         // If a problem occurs during the running of the game, the program can't continue
         if (!game.run())
-            System.exit(1);
+            return;
 
         // If a problem occurs during the saving of the game, the program can't continue
         if (!game.save())
-            System.exit(1);
+            return;
 
         Log.info("***** END *****");
         // Proper exit of the program
-        System.exit(0);
     }
 
     /**
