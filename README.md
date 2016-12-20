@@ -9,6 +9,9 @@ I assumed that the files were correctly filled :
 	- The map file doesn't have an direction's id which doesn't match a room's id
 	- The configuration file contains only objects that are in the map file
 
+To execute the tests : 
+	- The tests of GameTest needs some tests cases files, it will look for them in "test_cases/". Place this folder at the root of execution of the test
+
 
 Every line of code is written by me. The Log class is a class a used in some previous projects so it contains more functions than I used in this one
 
@@ -41,8 +44,8 @@ Every line of code is written by me. The Log class is a class a used in some pre
 ============================
 === FILES IN THE ARCHIVE ===
 ============================
-* The jar with the sources and the compiled classes	: egym-test-erwan-le-batard-poles.jar
-* The folder with the javadoc 						: egym-test-erwan-le-batard-poles-javadoc/
-* The folter with the Tests Coverage Report			: test-coverage-report/
-* The folter with the tests results					: test-results/
+* The jar with the sources, the compiled classes and tests classes	: egym-test-erwan-le-batard-poles.jar
+* The folder with the javadoc 										: egym-test-erwan-le-batard-poles-javadoc/
+* The folter with the Tests Coverage Report							: test-coverage-report/
+* The folter with the tests results									: test-results/
 
