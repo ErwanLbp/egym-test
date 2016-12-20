@@ -29,16 +29,18 @@ public class Game {
     private Historic historic;
     private String outputFilename;
 
+    public Game() {
+        this.historic = new Historic();
+    }
+
     /**
      * The entrance of the program<br/>
-     * <b>It has to receive at least <u>2</u> parameters</b> :
-     * <dl>
-     * <dt>First</dt><dd> : An xml file with the map of the maze</dd>
-     * <dt>Second</dt><dd> : A file with on the first line the id of the room the player starts in, then on each line an object to pick in the maze</dd>
-     * <dt>Third (Optional)</dt><dd> : The name of the output file, will be "output.xml" if it can't be found</dd>
-     * </dl>
+     * <b>It has to receive at least <u>2</u> parameters</b> :<br/>
+     * <b>First</b> : An xml file with the map of the maze<br/>
+     * <b>Second</b> : A file with on the first line the id of the room the player starts in, then on each line an object to pick in the maze<br/>
+     * <b>Third (Optional)</b> : The name of the output file, will be "output.xml" if it can't be found<br/>
      *
-     * @param args The arguments of the program
+     * @param args
      */
     public static void main(String[] args) {
         Log.info("***** BEGIN *****");
@@ -62,16 +64,12 @@ public class Game {
         System.exit(0);
     }
 
-    public Game() {
-        this.historic = new Historic();
-    }
-
     /**
      * The course of the game, will make the player move in the maze until he has found every object
      *
      * @return True if everything went well, otherwise false
      */
-    private boolean run() {
+    public boolean run() {
         Log.info("===== GAME START =====");
         // Get an iterator on the room the player is in
         Iterator roomIterator = player.getLocation().iterator();
@@ -108,7 +106,7 @@ public class Game {
         return true;
     }
 
-    private boolean configuration(String args[]) {
+    public boolean configuration(String args[]) {
 
         // If we don't receive the map.xml and the config.txt file we can't start the game
         if (args.length < 2) {
@@ -161,7 +159,7 @@ public class Game {
      *
      * @return True if everything went well, otherwise false
      */
-    private boolean save() {
+    public boolean save() {
         Document docDOM = historic.convertToDOM();
         return InOut.saveOutputXML(docDOM, outputFilename);
     }

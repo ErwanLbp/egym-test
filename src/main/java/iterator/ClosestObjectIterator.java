@@ -123,9 +123,6 @@ public class ClosestObjectIterator implements Iterator {
      */
     private void actualize() {
         directionsToGo = new ArrayList<>();
-        // If it's the first call, the remove() won't do anything
-        // At the next calls, we will be in a room we were looking for and we picked the objects, so we remove this room
-        roomsToGo.remove(room);
         roomsIdsVisited = new ArrayList<>();
 
         // The function will fill the list directionsToGo with the directions to go to the closest room we need
@@ -170,8 +167,11 @@ public class ClosestObjectIterator implements Iterator {
         }
 
         // If now we are in a room we were looking for, we have to find the new path to the closest object
-        if (roomsToGo.contains(room))
+        // We are in a room we had to go in, so we remove the current room from the list of rooms to go
+        if (roomsToGo.contains(room)) {
+            roomsToGo.remove(room);
             actualize();
+        }
 
         return enter;
     }

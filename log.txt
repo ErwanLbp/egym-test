@@ -26,3 +26,36 @@ Player moved to the room [5] Kitchen
 Player moved to the room [3] Hallway 2
 Player moved to the room [6] Bath Room
 Player picked the object Soap
+***** BEGIN *****
+[O]	map.xml has been loaded successfully
+[O]	config.txt has been loaded successfully
+8 rooms found in the DOM object
+[O]	[1] Stairway, 1 objects found
+[O]	[2] Hallway 1, 2 objects found
+[O]	[3] Hallway 2, 1 objects found
+[O]	[4] Storage Room, 0 objects found
+[O]	[5] Kitchen, 1 objects found
+[O]	[6] Bath Room, 1 objects found
+[O]	[7] Living Room, 0 objects found
+[O]	[8] Bed Room, 2 objects found
+Player start in room [1] Stairway and has to find : [Umbrella, Scarf, Pencil, Knife, Money, Dust, Soap, Pillow]
+===== GAME START =====
+Player picked the object Dust
+Player moved to the room [2] Hallway 1
+Player picked the object Umbrella
+Player picked the object Scarf
+Player moved to the room [3] Hallway 2
+Player picked the object Money
+Player moved to the room [5] Kitchen
+Player picked the object Knife
+Player moved to the room [8] Bed Room
+Player picked the object Pillow
+Player picked the object Pencil
+Player moved to the room [5] Kitchen
+Player moved to the room [3] Hallway 2
+Player moved to the room [6] Bath Room
+Player picked the object Soap
+[O]	Player found every objects
+===== GAME END =====
+[O]	The route has been saved successfully in output.xml
+***** END *****
