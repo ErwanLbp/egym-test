@@ -3880,3 +3880,119 @@ Player start in room [5] test_player and has to find : []
 Player start in room [5] test_player and has to find : [o1_player]
 Player picked the object o1_player
 The maze already contains the object o1_room
+Player start in room [1] test and has to find : []
+Player start in room [1] test and has to find : []
+Player moved to the room [2] test2
+Player start in room [1] test and has to find : []
+Player moved to the room [2] test2
+Player moved to the room [1] test
+Player start in room [1] test and has to find : []
+Player start in room [1] test and has to find : []
+Player start in room [1] test and has to find : [o]
+Player start in room [1] test and has to find : [o]
+Player picked the object o
+Player start in room [1] test and has to find : [o]
+Player picked the object o
+Player dropped the object o
+Player start in room [1] test and has to find : [o]
+Player start in room [1] test_r and has to find : [test_o1, test_o2]
+### RESET ###
+***** BEGIN *****
+[X]	Not enough program arguments received
+### RESET ###
+***** BEGIN *****
+[X]	Not enough program arguments received
+### RESET ###
+***** BEGIN *****
+[O]	test_cases/no_object/map_no_object.xml has been loaded successfully
+[O]	test_cases/no_object/config_no_object.txt has been loaded successfully
+8 rooms found in the DOM object
+[O]	[109] Stairway, 0 objects found
+[O]	[110] Hallway 1, 0 objects found
+[O]	[111] Hallway 2, 0 objects found
+[O]	[112] Storage Room, 0 objects found
+[O]	[113] Kitchen, 0 objects found
+[O]	[114] Bath Room, 0 objects found
+[O]	[115] Living Room, 0 objects found
+[O]	[116] Bed Room, 0 objects found
+Player start in room [109] Stairway and has to find : []
+===== GAME START =====
+[O]	Player found every objects
+===== GAME END =====
+[O]	The route has been saved successfully in test_cases/no_object/output_no_object.xml
+***** END *****
+### RESET ###
+***** BEGIN *****
+[O]	test_cases/example_given/map_example.xml has been loaded successfully
+[O]	test_cases/example_given/config_example.txt has been loaded successfully
+8 rooms found in the DOM object
+[O]	[101] Stairway, 0 objects found
+[O]	[102] Hallway 1, 2 objects found
+[O]	[103] Hallway 2, 1 objects found
+[O]	[104] Storage Room, 0 objects found
+[O]	[105] Kitchen, 1 objects found
+[O]	[106] Bath Room, 1 objects found
+[O]	[107] Living Room, 0 objects found
+[O]	[108] Bed Room, 1 objects found
+Player start in room [101] Stairway and has to find : [Scarf, Soap]
+===== GAME START =====
+Player moved to the room [102] Hallway 1
+Player picked the object Scarf
+Player moved to the room [103] Hallway 2
+Player moved to the room [106] Bath Room
+Player picked the object Soap
+[O]	Player found every objects
+===== GAME END =====
+[O]	The route has been saved successfully in test_cases/example_given/output_example.xml
+***** END *****
+### RESET ###
+***** BEGIN *****
+[O]	test_cases/one_room/map_one_room.xml has been loaded successfully
+[O]	test_cases/one_room/config_one_room.txt has been loaded successfully
+1 rooms found in the DOM object
+[O]	[117] Stairway, 1 objects found
+Player start in room [117] Stairway and has to find : [Dust]
+===== GAME START =====
+Player picked the object Dust
+[O]	Player found every objects
+===== GAME END =====
+[O]	The route has been saved successfully in test_cases/one_room/output_one_room.xml
+***** END *****
+[X]	Unknow Direction : other
+The maze already contains the room [3] test_maze
+The maze already contains the room [4] test_maze_2
+The maze already contains the room [3] test_maze
+The maze already contains the room [4] test_maze_2
+The maze already contains the room [3] test_maze
+The maze already contains the room [4] test_maze_2
+The maze already contains the room [3] test_maze
+The maze already contains the room [4] test_maze_2
+1 rooms found in the DOM object
+[O]	[11] room_load_maze, 1 objects found
+The maze already contains the room [3] test_maze
+The maze already contains the room [4] test_maze_2
+Player start in room [5] test_player and has to find : [o1_player]
+Player start in room [5] test_player and has to find : [o1_player]
+Player start in room [5] test_player and has to find : []
+Player start in room [5] test_player and has to find : []
+Player moved to the room [6] test_player_2
+Player start in room [5] test_player and has to find : [o1_player, o2_player]
+Player picked the object o2_player
+Player start in room [5] test_player and has to find : [o1_player, o2_player]
+Player picked the object o2_player
+Player picked the object o1_player
+Player start in room [5] test_player and has to find : [o1_player, o2_player]
+Player start in room [5] test_player and has to find : [o2_player]
+Player start in room [5] test_player and has to find : [o1_player, o2_player]
+Player start in room [5] test_player and has to find : [o1_player]
+Player start in room [5] test_player and has to find : [o1_player, o2_player]
+Player start in room [5] test_player and has to find : [o3]
+Player start in room [5] test_player and has to find : [o1_player]
+Player picked the object o1_player
+Player dropped the object o1_player
+Player start in room [5] test_player and has to find : [o1_player]
+Player picked the object o1_player
+Player start in room [5] test_player and has to find : []
+Player start in room [5] test_player and has to find : [o1_player]
+Player picked the object o1_player
+The maze already contains the object o1_room

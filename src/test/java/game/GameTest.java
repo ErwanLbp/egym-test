@@ -15,7 +15,7 @@ import static org.junit.Assert.assertTrue;
  */
 public class GameTest {
 
-    private String testFolder = "src/main/resources/test_cases/";
+    private String testFolder = "test_cases/";
 
     @Before
     public void reinit() {
