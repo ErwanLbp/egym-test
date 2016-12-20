@@ -84,7 +84,7 @@ public class Game {
             // If the iterator consider we don't need to enter an other room, we don't have an Enter command to execute
             if (enter != null) {
                 // The iterator decide which room to go without the player, so we have to add it to the command
-                // FIXME May be no the best way to do it, not very safe
+                // FIXME May be no the best way to do it
                 enter.setPlayer(player);
                 enter.execute();
                 // We store the command to, then, save it to the output file
@@ -127,7 +127,7 @@ public class Game {
 
         // Converting the first line of the configuration to an int : the initial room the player starts in
         // If there is a problem, the program will stop
-        // FIXME We could say that the player starts in the first room available
+        // FIXME We could say that the player starts in the first room available if the initial room isn't found
         int idInitialRoom;
         try {
             idInitialRoom = Integer.parseInt(configContent.get(0));
