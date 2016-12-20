@@ -1,10 +1,8 @@
 package command;
 
-import model.Room;
 import org.w3c.dom.Document;
 
 /**
- * <h1>command Command</h1>
  * Interface to modelize the command pattern, it can execute itself and undo what it did
  *
  * @author Erwan LBP

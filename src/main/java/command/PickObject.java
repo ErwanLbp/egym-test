@@ -7,7 +7,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 /**
- * <h1>command PickObject</h1>
  * Command to pick an object in the room
  *
  * @author Erwan LBP

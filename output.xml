@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <route>
-<room id="1" name="Stairway"/>
 <room id="2" name="Hallway 1">
 <object name="Umbrella"/>
 <object name="Scarf"/>
@@ -13,10 +12,18 @@
 </room>
 <room id="8" name="Bed Room">
 <object name="Pillow"/>
+<object name="Pencil"/>
 </room>
 <room id="5" name="Kitchen"/>
 <room id="3" name="Hallway 2"/>
 <room id="6" name="Bath Room">
 <object name="Soap"/>
+</room>
+<room id="3" name="Hallway 2"/>
+<room id="5" name="Kitchen"/>
+<room id="8" name="Bed Room"/>
+<room id="7" name="Living Room"/>
+<room id="1" name="Stairway">
+<object name="Dust"/>
 </room>
 </route>

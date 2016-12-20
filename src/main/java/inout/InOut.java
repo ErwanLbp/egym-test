@@ -1,4 +1,4 @@
-package parse;
+package inout;
 
 import log.Log;
 import org.w3c.dom.Document;
@@ -20,7 +20,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 /**
- * <h1>parse ParseMapXML</h1>
+ * The class that will manage all the in/out of the application, the parsing of the XMl files, the saving of the route, the parse of the config
  *
  * @author Erwan LBP
  * @version 1.0
@@ -37,11 +37,10 @@ public class InOut {
     public static Document loadMapXml(String filename) {
         Document doc;
         try {
-            // Creation of a documents factory
+            // Getting a parser for the Document
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            // Creation of a document builder
             DocumentBuilder parser = factory.newDocumentBuilder();
-            // Loading of the XML file and converting in DOM
+            // Loading of the XML file and converting it to DOM
             File fdom = new File(filename);
             doc = parser.parse(fdom);
         } catch (Exception e) {
@@ -53,13 +52,13 @@ public class InOut {
     }
 
     /**
-     * Save the XMl path in a file
+     * Save the XMl route in a file
      *
-     * @param mazePath DOM object containing the path to pick every object needed
-     * @param filename String name of the file
+     * @param mazeRoute DOM object containing the route to pick every object needed
+     * @param filename  String name of the file
      * @return False if a problem happened, otherwise true
      */
-    public static boolean saveOutputXML(Document mazePath, String filename) {
+    public static boolean saveOutputXML(Document mazeRoute, String filename) {
         try {
             TransformerFactory tf = TransformerFactory.newInstance();
             Transformer transformer = tf.newTransformer();
@@ -71,7 +70,7 @@ public class InOut {
             File f = new File(filename);
             if (f.exists()) f.delete();
             StreamResult newFile = new StreamResult(f);
-            transformer.transform(new DOMSource(mazePath), newFile);
+            transformer.transform(new DOMSource(mazeRoute), newFile);
         } catch (Exception e) {
             Log.error("Unable to save the " + filename + " file");
             return false;
@@ -81,7 +80,7 @@ public class InOut {
     }
 
     /**
-     * Read the config file and return the content in a List
+     * Read the config file and return the content in a List of String
      *
      * @param filename String name of the file
      * @return A List with the content of the file, or null if a problem happened
@@ -90,6 +89,7 @@ public class InOut {
         ArrayList<String> configContent = new ArrayList<String>();
         try (BufferedReader br = Files.newBufferedReader(Paths.get(filename), Charset.forName("ISO-8859-1"))) {
             String line;
+            // We store each line of the file in the list
             while ((line = br.readLine()) != null)
                 configContent.add(line);
         } catch (FileNotFoundException e) {

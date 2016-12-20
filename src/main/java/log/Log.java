@@ -9,8 +9,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
 /**
- * <h1>log Log</h1>
- * <p>Logging class, it print the logs on the console, and can also, if the constants are enabled, print it in a file or in a pop-up</p>
+ * Logging class, it print the logs on the console, and can also, if the constants are enabled, print it in a file or in a pop-up
  *
  * @author Erwan LBP
  * @version 1.0
@@ -18,7 +17,7 @@ import java.nio.file.StandardOpenOption;
  */
 public class Log {
 
-    private static boolean writeInFile = false;
+    private static boolean writeInFile = true;
     private static boolean popUp = false;
     private static String filepath = "log.txt";
 
@@ -60,7 +59,7 @@ public class Log {
         try (BufferedWriter bos = Files.newBufferedWriter(Paths.get(filepath), Charset.forName("ISO-8859-1"), StandardOpenOption.APPEND)) {
             bos.write(log);
         } catch (IOException e) {
-            System.out.println("[X]\tError writing the log : " + log);
+            System.out.println("[X]\tError writing the log : " + log + "; The file " + filepath + " has to be present");
             return false;
         }
         return true;

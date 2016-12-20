@@ -7,7 +7,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 /**
- * <h1>command Enter</h1>
  * A Command to enter a room of the maze
  *
  * @author Erwan LBP

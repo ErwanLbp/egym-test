@@ -1,7 +1,9 @@
 1
 Umbrella
 Scarf
+Pencil
 Knife
 Money
+Dust
 Soap
 Pillow

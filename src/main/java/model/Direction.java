@@ -3,7 +3,7 @@ package model;
 import log.Log;
 
 /**
- * <h1>model Direction</h1>
+ * The model of a cardinal direction
  *
  * @author Erwan LBP
  * @version 1.0
@@ -12,6 +12,9 @@ import log.Log;
 public enum Direction {
     NORTH, EAST, SOUTH, WEST;
 
+    /**
+     * @return The opposite of the direction
+     */
     public Direction opposite() {
         switch (this) {
             case EAST:
@@ -26,6 +29,10 @@ public enum Direction {
         throw new IllegalStateException("Unknown Direction");
     }
 
+    /**
+     * @param direction The string to convert in a direction
+     * @return The Direction matching the string received
+     */
     public static Direction toDirection(String direction) {
         if (direction.equals("north")) return NORTH;
         if (direction.equals("south")) return SOUTH;
@@ -35,6 +42,9 @@ public enum Direction {
         return null;
     }
 
+    /**
+     * @return The Direction at the left of the current one
+     */
     public Direction atLeft() {
         switch (this) {
             case EAST:
@@ -49,7 +59,11 @@ public enum Direction {
         throw new IllegalStateException("Unknown Direction");
     }
 
+    /**
+     * @return The Direction at the right of the current one
+     */
     public Direction atRight() {
+        // It's just the opposite of the direction at the right
         return atLeft().opposite();
     }
 }

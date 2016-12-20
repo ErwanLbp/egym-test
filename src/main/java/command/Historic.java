@@ -10,7 +10,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.util.Stack;
 
 /**
- * <h1>command Historic</h1>
  * The invoker of the commands. Contains the historic of the commands
  *
  * @author Erwan LBP
@@ -34,6 +33,7 @@ public class Historic {
 
     /**
      * Pop the last command of the Stack historic and call its undo()
+     *
      * @see Command#undo()
      */
     public void undo() {

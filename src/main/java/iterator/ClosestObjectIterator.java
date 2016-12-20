@@ -8,7 +8,6 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * <h1>iterator ClosestObjectIterator</h1>
  * An iterator on a Room object<br/>
  * It will store a List of Direction to execute to go to the closest object and then will iterate on this list until the object is found. After that it will find the next closest object<br/>
  * <b>This iterator do not find the optimal path to find <u>every</u> time</b><br/>
@@ -44,10 +43,10 @@ public class ClosestObjectIterator implements Iterator {
      * @param objectsToFind The list of objects the player still have to find
      */
     public void setObjectsToFind(List<ObjectR> objectsToFind) {
-        // For every objects in the list to find, we add the room to the list of rooms to go
+        // For every objects in the list to find, we add the room to the list of rooms to go if the room is not already in it
         for (ObjectR objectR : objectsToFind) {
             Room aRoomToGo = Maze.getInstance().inWhichRoomIs(objectR);
-            if (aRoomToGo != null)
+            if (aRoomToGo != null && !roomsToGo.contains(aRoomToGo))
                 roomsToGo.add(aRoomToGo);
         }
     }

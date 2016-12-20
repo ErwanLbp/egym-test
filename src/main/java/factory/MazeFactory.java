@@ -5,7 +5,6 @@ import model.*;
 import java.util.List;
 
 /**
- * <h1>factory MazeFactory</h1>
  * Abstract factory to create the objects needed in the maze<br/>
  * It permit to control the creation, so we can later add some styles, why not a magic maze ?
  *
@@ -16,12 +15,12 @@ import java.util.List;
 public class MazeFactory {
 
     /**
-     * The only instance of MazeFactory
+     * The unique instance of MazeFactory
      */
     private static MazeFactory instance;
 
     /**
-     * Private constructor to control the creation of MazeFactory objects
+     * Private constructor to control the creation of the MazeFactory object
      */
     private MazeFactory() {
     }
