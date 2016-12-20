@@ -20,8 +20,6 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 /**
- * <h1>command PickObjectTest</h1>
- *
  * @author Erwan LBP
  * @version 1.0
  * @since 20-12-2016

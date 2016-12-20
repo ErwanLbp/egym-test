@@ -56,17 +56,17 @@ public class Room implements Iterable {
     }
 
     /**
-     * To add an object to the room, can't add an object that is already in the room
+     * To add an object to the room, can't add an object that is already in the maze
      *
-     * @param objectR The obejct to add to the room
+     * @param objectR The object to add to the room
      */
     public void addObject(ObjectR objectR) {
-        // If the obect is not already in the objects list, add it
-        for (ObjectR o : objects) {
-            if (o == objectR) {
-                Log.info("The room " + id + " " + name + " already contains the object " + objectR);
-                return;
-            }
+        if (objectR == null) return;
+
+        // If the object is not already in the objects list, add it
+        if (this.contains(objectR)) {
+            Log.info("The maze already contains the object " + objectR);
+            return;
         }
         this.objects.add(objectR);
     }
@@ -116,7 +116,10 @@ public class Room implements Iterable {
      * @return True if the object is in the room, otherwise false
      */
     public boolean contains(ObjectR objectR) {
-        return objects.contains(objectR);
+        for (ObjectR obj : objects)
+            if (obj.equals(objectR))
+                return true;
+        return false;
     }
 
     /**

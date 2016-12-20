@@ -56,7 +56,7 @@ public class Player {
      * @return True if the player picked the object, otherwise false
      */
     public boolean pickObject(ObjectR objectR) {
-        if (todolist.containsKey(objectR)) {
+        if (objectR != null && todolist.containsKey(objectR)) {
             todolist.replace(objectR, true);
             Log.info("Player picked the object " + objectR);
             return true;
@@ -94,7 +94,7 @@ public class Player {
      */
     public void dropObject(ObjectR objectR) {
         // We set the object to false only if the todolist contains it
-        if (todolist.containsKey(objectR)) {
+        if (objectR != null && todolist.containsKey(objectR)) {
             todolist.replace(objectR, false);
             Log.info("Player dropped the object " + objectR);
         }

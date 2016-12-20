@@ -28,7 +28,6 @@ public class Maze {
      */
     private Maze() {
         this.rooms = new ArrayList<>();
-        this.objects = new HashMap<>();
     }
 
     /**
@@ -46,16 +45,19 @@ public class Maze {
     private List<Room> rooms;
 
     /**
-     * Map containing each object and the room it is in
-     */
-    private Map<ObjectR, Room> objects;
-
-    /**
      * To add a room to the maze
      *
      * @param room The room to add to the maze
      */
-    private void addRoom(Room room) {
+    public void addRoom(Room room) {
+        if (room == null) return;
+        // If the room is not already in the rooms list, add it
+        for (Room r : rooms) {
+            if (r.equals(room)) {
+                Log.info("The maze already contains the room " + room);
+                return;
+            }
+        }
         this.rooms.add(room);
     }
 
@@ -78,7 +80,12 @@ public class Maze {
      * @return The room the object received is in
      */
     public Room inWhichRoomIs(ObjectR objectR) {
-        return objects.get(objectR);
+        if (objectR == null) return null;
+        for (Room room : rooms) {
+            if (room.contains(objectR))
+                return room;
+        }
+        return null;
     }
 
     /**
@@ -104,7 +111,6 @@ public class Maze {
             // Parsing the attributes "id" and "name" of the room
             NamedNodeMap attributes = nodeRoom.getAttributes();
             try {
-                Node n = attributes.getNamedItem("id");
                 id = Integer.parseInt(attributes.getNamedItem("id").getNodeValue());
                 name = attributes.getNamedItem("name").getNodeValue();
             } catch (Exception e) {
@@ -149,7 +155,6 @@ public class Maze {
                 try {
                     ObjectR objectR = MazeFactory.getInstance().createObject(nodeObject.getAttributes().getNamedItem("name").getNodeValue());
                     room.addObject(objectR);
-                    objects.put(objectR, room);
                 } catch (Exception e) {
                     Log.error("Error during converting an object of the room " + room + " of the DOM maze into a Room object in the Maze");
                     return false;

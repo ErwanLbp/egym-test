@@ -12,8 +12,6 @@ import org.w3c.dom.Document;
 import static org.junit.Assert.assertEquals;
 
 /**
- * <h1>command HistoricTest</h1>
- *
  * @author Erwan LBP
  * @version 1.0
  * @since 20-12-2016
