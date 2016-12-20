@@ -53,7 +53,6 @@ public class RoomTest {
     @Test
     public void addObjectAlreadyIn() {
         r1.addObject(o1);
-        System.out.println(r1.getObjects());
         assertEquals(2, r1.getObjects().size());
     }
 
