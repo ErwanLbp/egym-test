@@ -8,6 +8,7 @@ import org.w3c.dom.Element;
 
 /**
  * <h1>command Enter</h1>
+ * A Command to enter a room of the maze
  *
  * @author Erwan LBP
  * @version 1.0
@@ -19,27 +20,49 @@ public class Enter implements Command {
     private Direction direction;
     private Player player;
 
+    /**
+     * @param player    The player who use the command
+     * @param room      The room in which the command take place
+     * @param direction The direction of the side to go, it can lead to a Wall
+     */
     public Enter(Player player, Room room, Direction direction) {
         this.player = player;
         this.room = room;
         this.direction = direction;
     }
 
+    /**
+     * @param player The new player, used when we have access to the player only after creation of the command
+     */
     public void setPlayer(Player player) {
         this.player = player;
     }
 
+    /**
+     * Execute the command<br/>
+     * If it's a door, move the player to the room the direction lead, otherwise do nothing
+     */
     @Override
     public void execute() {
         if (isPossible())
             player.moveTo(direction);
     }
 
+    /**
+     * Undo the command<br/>
+     * Move the player to the opposite direction, so it cancel the execute()
+     */
     @Override
     public void undo() {
-        player.moveTo(direction.opposite());
+        if (isPossible())
+            player.moveTo(direction.opposite());
     }
 
+    /**
+     * Add a room object in the DOM object, with its id and name
+     *
+     * @param document The DOM object to add the command
+     */
     @Override
     public void append(Document document) {
         Element roomElement = document.createElement("room");
@@ -49,15 +72,24 @@ public class Enter implements Command {
         document.getDocumentElement().appendChild(roomElement);
     }
 
+    /**
+     * @return The room in with the command take place
+     */
     @Override
     public Room getRoom() {
         return room;
     }
 
-    public boolean isPossible() {
+    /**
+     * @return True if it's possible to go through the side pointed by the direction
+     */
+    private boolean isPossible() {
         return room.getSide(direction).canGoThrough();
     }
 
+    /**
+     * @return A string describing the command
+     */
     @Override
     public String toString() {
         return "In the room " + room + ", go " + direction;

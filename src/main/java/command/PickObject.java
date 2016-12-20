@@ -8,6 +8,7 @@ import org.w3c.dom.Element;
 
 /**
  * <h1>command PickObject</h1>
+ * Command to pick an object in the room
  *
  * @author Erwan LBP
  * @version 1.0
@@ -19,23 +20,42 @@ public class PickObject implements Command {
     private Room room;
     private ObjectR objectR;
 
+    /**
+     * @param player  The player which will pick an object
+     * @param room    The room where is the player and the object
+     * @param objectR The object to pick
+     */
     public PickObject(Player player, Room room, ObjectR objectR) {
         this.player = player;
         this.room = room;
         this.objectR = objectR;
     }
 
+    /**
+     * Execute the command<br/>
+     * If the room contains the object, the player picks it, otherwise do nothing
+     */
     @Override
     public void execute() {
         if (room.contains(objectR))
             player.pickObject(objectR);
     }
 
+    /**
+     * Undo the command<br/>
+     * The player drops the object of the command, so it cancel the execute()
+     */
     @Override
     public void undo() {
         player.dropObject(objectR);
     }
 
+    /**
+     * Add an object in the DOM object, with its name<br/>
+     * Add it to the room of the object if its already in the Document, otherwise add the room to the Document
+     *
+     * @param document The DOM object to add the command
+     */
     @Override
     public void append(Document document) {
         Element roomElement = document.getElementById(room.getId() + "");
@@ -52,11 +72,17 @@ public class PickObject implements Command {
         roomElement.appendChild(objectElement);
     }
 
+    /**
+     * @return The room in with the command take place
+     */
     @Override
     public Room getRoom() {
         return room;
     }
 
+    /**
+     * @return A string describing the command
+     */
     @Override
     public String toString() {
         return "In the room " + room + ", pick object " + objectR;

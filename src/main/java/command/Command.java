@@ -2,10 +2,10 @@ package command;
 
 import model.Room;
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 
 /**
- * <h1>model Command</h1>
+ * <h1>command Command</h1>
+ * Interface to modelize the command pattern, it can execute itself and undo what it did
  *
  * @author Erwan LBP
  * @version 1.0
@@ -13,11 +13,25 @@ import org.w3c.dom.Element;
  */
 public interface Command {
 
+    /**
+     * Execute the command
+     */
     void execute();
 
+    /**
+     * Undo the command
+     */
     void undo();
 
+    /**
+     * Add the command to the DOM document
+     *
+     * @param document The DOM object to add the command
+     */
     void append(Document document);
 
+    /**
+     * @return The Room in which the command take place
+     */
     Room getRoom();
 }
