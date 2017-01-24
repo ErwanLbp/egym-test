@@ -137,7 +137,7 @@ public class Game {
         }
 
         // Getting the third argument of the program in the output filename, if the program didn't received three argument, the output filename will be "output.xml"
-        outputFilename = args[2];
+        outputFilename = (args.length >= 3) ? args[2] : null;
         if (outputFilename == null) {
             Log.error("Output filename argument not found, will be : output.xml");
             outputFilename = "output.xml";
